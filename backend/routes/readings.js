@@ -4,13 +4,10 @@ const auth = require('../middleware/auth');
 const Reading = require('../models/Reading');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
-// POST /api/readings  (from simulator or device) - allow API_KEY or JWT
 router.post('/', async (req, res) => {
   try {
-    // optional API key header
     const apiKey = req.header('x-api-key');
     if (!apiKey && !req.header('x-auth-token')) {
-      // you could require api key or auth; here we allow if API key matches
     }
     const data = req.body;
     const reading = new Reading(data);
